@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpectraxLab Terms of Service</title>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #00ff00;
+            font-family: "Courier New", Courier, monospace;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .binary-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: url('https://media.giphy.com/media/3o7abldj0b3rxrZUxW/giphy.gif') repeat;
+            opacity: 0.1;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px #00ff00;
+            margin-top: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            text-shadow: 0px 0px 10px #00ff00;
+        }
+
+        .terms {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: #1a1a1a;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .agree-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            text-align: center;
+            background-color: #00ff00;
+            color: #0a0a0a;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .agree-button:hover {
+            background-color: #008000;
+            transform: scale(1.05);
+        }
+
+        .thank-you {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px #00ff00;
+        }
+
+        .thank-you h2 {
+            text-shadow: 0px 0px 10px #00ff00;
+        }
+
+        .thank-you p {
+            margin: 10px 0;
+            color: #00ff00;
+        }
+    </style>
+</head>
+<body>
+    <div class="binary-background"></div>
+
+    <div class="container">
+        <h1>SpectraxLab Terms of Service</h1>
+        <div class="terms">
+            <p>Welcome to SpectraxLab. By agreeing to these terms, you acknowledge and accept the following:</p>
+            <ul>
+                <li>We provide penetration testing guides, hacking books, and ethical hacking services such as IP search and OSINT.</li>
+                <li>All services are for ethical and educational purposes only and comply with Qatari laws, including Law No. 13 of 2016 on the Protection of Personal Data and the Qatari Cybercrime Prevention Law.</li>
+                <li>Payments collected by SpectraxLab are processed through secure and legal channels in compliance with Qatari financial regulations, ensuring your transactions are safe.</li>
+                <li>By agreeing, you acknowledge that SpectraxLab is not liable for misuse of any provided materials or services.</li>
+                <li>You agree to indemnify and hold SpectraxLab harmless from any claims or legal actions resulting from your use of our services.</li>
+            </ul>
+            <p>By clicking "I Agree", you agree to these terms and conditions.</p>
+        </div>
+        <button class="agree-button" onclick="agreeToTerms()">I Agree</button>
+    </div>
+
+    <div class="thank-you">
+        <h2>Thank You for Agreeing!</h2>
+        <p><span id="userName"></span> has been recorded as agreeing to the terms and conditions.</p>
+        <p>If you have any further questions, feel free to contact us at spectraxcenter@gmail.com.</p>
+        <p>Session Key: <span id="sessionKey"></span></p>
+    </div>
+
+    <script>
+        function generateSessionKey() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        function agreeToTerms() {
+            const name = prompt("Please enter your name to confirm your agreement:");
+            if (!name) {
+                alert("You must enter your name to proceed.");
+                return;
+            }
+
+            const sessionKey = generateSessionKey();
+            document.querySelector('.container').style.display = 'none';
+
+            const thankYouPage = document.querySelector('.thank-you');
+            thankYouPage.style.display = 'block';
+            document.getElementById('userName').textContent = name;
+            document.getElementById('sessionKey').textContent = sessionKey;
+        }
+    </script>
+</body>
+</html>
